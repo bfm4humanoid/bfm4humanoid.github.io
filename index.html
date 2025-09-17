@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Behavior Foundation Model for Humanoid Robots">
+  <meta name="keywords" content="BFM, Humanoid Robots, Whole-body Control">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Behavior Foundation Model for Humanoid Robots</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/robot-2-fill.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://zengweishuai.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <!-- <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://yinkangning0124.github.io/Humanoid-UniTracker/">
+            UniTracker
+          </a>
+        </div>
+      </div> -->
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Behavior Foundation Model<br>for Humanoid Robots</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://zengweishuai.github.io">Weishuai Zeng</a><sup>1,5</sup>,</span>
+            <span class="author-block">
+              <a href="https://shunlinlu.github.io/">Shunlin Lu</a><sup>2,5</sup>,</span>
+            <span class="author-block">
+              <a href="https://yinkangning0124.github.io/">Kangning Yin</a><sup>3,5</sup>,
+            </span>
+            <span class="author-block">
+                <a href="https://bfm4humanoid.github.io/">Xiaojie Niu</a><sup>5</sup>,
+            </span>
+            <span class="author-block">
+                <a href="https://jixiii.github.io/">Minyue Dai</a><sup>4,5</sup>,
+              </span> <br>
+            <span class="author-block">
+              <a href="https://wangjingbo1219.github.io/">Jingbo Wang</a><sup>5</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://oceanpang.github.io/">Jiangmiao Pang</a><sup>5</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Peking University,</span>
+            <span class="author-block"><sup>2</sup>The Chinese University of Hong Kong, Shenzhen</span>
+            <span class="author-block"><sup>3</sup>Shanghai Jiao Tong University</span>
+            <span class="author-block"><sup>4</sup>Fudan University</span> 
+            <span class="author-block"><sup>5</sup>Shanghai Artificial Intelligence Laboratory</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/file/bfm_paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://bfm4humanoid.github.io"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (In Coming)</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0rem;">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="./static/file/bfm_video.mp4"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Whole-body control (WBC) of humanoid robots has witnessed remarkable progress in skill versatility, enabling a wide range of applications such as locomotion, teleoperation, and motion tracking. 
+            Despite these achievements, existing WBC frameworks remain largely task-specific, relying heavily on labor-intensive reward engineering and demonstrating limited generalization across tasks and skills. 
+            These limitations hinder their response to arbitrary control modes and restrict their deployment in complex, real-world scenarios. 
+          <!-- </p>
+          <p> -->
+            To address these challenges, we revisit existing WBC systems and identify a shared objective across diverse tasks: the generation of appropriate behaviors that guide the robot toward desired goal states. 
+            Building on this insight, we propose the Behavior Foundation Model (BFM), a generative model pretrained on large-scale behavioral datasets to capture broad, reusable behavioral knowledge for humanoid robots. 
+            BFM integrates a masked online distillation framework with a Conditional Variational Autoencoder (CVAE) to model behavioral distributions, thereby enabling flexible operation across diverse control modes and efficient acquisition of novel behaviors without retraining from scratch. 
+            Extensive experiments in both simulation and on a physical humanoid platform demonstrate that BFM generalizes robustly across diverse WBC tasks while rapidly adapting to new behaviors. 
+            These results establish BFM as a promising step toward a foundation model for general-purpose humanoid control.
+          <p>
+
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+      <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+      </div> -->
+      <!--/ Paper video. -->
+    </div>
+  </section>
+
+<section class="section" style="padding-top: 0rem;">
+    <div class="container is-max-desktop">
+         <div class="columns is-centered has-text-centered">
+             <h2 class="title is-3">Behavior Gallery</h2>
+         </div>
+         <div class="columns is-centered has-text-centered">
+             <div class="column is-half">
+                 <hr class="has-background-grey-light" style="height: 1px; margin: 1rem 0;">
+                 <p class="is-size-6 has-text-grey">All the behaviors below are generated <br>based on our Behavior Foundation Model.</p>
+                 <hr class="has-background-grey-light" style="height: 1px; margin: 1rem 0;">
+             </div>
+         </div>
+            <div class="columns is-centered">
+
+                <div class="column">
+                <div class="content">
+                    <div class="content has-text-centered">
+                        <h2 class="title is-7">Swimming</h2>
+                    </div>
+                    <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/bfm_videos/swimming.mp4"
+                            type="video/mp4">
+                    </video>
+                </div>
+                </div>
+
+                <div class="column">
+                    <div class="content">
+                        <div class="content has-text-centered">
+                            <h2 class="title is-7">Walk and Sit on the Ground</h2>
+                        </div>
+                        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/bfm_videos/sit_down.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="content">
+                        <div class="content has-text-centered">
+                            <h2 class="title is-7">Walk and Sit on the Chair </h2>
+                        </div>
+                        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/bfm_videos/sit_chair.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="columns is-centered">
+
+                <div class="column">
+                    <div class="content">
+                        <div class="content has-text-centered">
+                            <h2 class="title is-7">Get up from the Ground</h2>
+                        </div>
+                        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/bfm_videos/getup.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                    </div>
+
+                <div class="column">
+                <div class="content">
+                    <div class="content has-text-centered">
+                        <h2 class="title is-7">Roundhouse Kick</h2>
+                    </div>
+                    <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/bfm_videos/roundhouse.mp4"
+                            type="video/mp4">
+                    </video>
+                </div>
+                </div>
+
+                <div class="column">
+                    <div class="content">
+                        <div class="content has-text-centered">
+                            <h2 class="title is-7">Basketball Layup</h2>
+                        </div>
+                        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/bfm_videos/layup.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="columns is-centered">
+
+                <div class="column">
+                <div class="content">
+                    <div class="content has-text-centered">
+                        <h2 class="title is-7">Forward Roll</h2>
+                    </div>
+                    <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/bfm_videos/forward_roll.mp4"
+                            type="video/mp4">
+                    </video>
+                </div>
+                </div>
+
+                <div class="column">
+                    <div class="content">
+                        <div class="content has-text-centered">
+                            <h2 class="title is-7">Butterfly Kick</h2>
+                        </div>
+                        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/bfm_videos/bkick.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="content">
+                        <div class="content has-text-centered">
+                            <h2 class="title is-7">Cartwheel</h2>
+                        </div>
+                        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/bfm_videos/cartwheel.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="columns is-centered">
+
+                <div class="column">
+                    <div class="content">
+                        <div class="content has-text-centered">
+                            <h2 class="title is-7">Side Salto</h2>
+                        </div>
+                        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/bfm_videos/side_salto.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="content">
+                        <div class="content has-text-centered">
+                            <h2 class="title is-7">Simple Locomotion with Remote Controller</h2>
+                        </div>
+                        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/bfm_videos/locomotion_1.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="content">
+                        <div class="content has-text-centered">
+                            <h2 class="title is-7">Simple Locomotion with Remote Controller</h2>
+                        </div>
+                        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/bfm_videos/locomotion_2.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="columns is-centered">
+
+                <div class="column">
+                <div class="content">
+                    <div class="content has-text-centered">
+                        <h2 class="title is-7">Squatting Locomotion with Remote Controller</h2>
+                    </div>
+                    <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/bfm_videos/loco_squat.mp4"
+                            type="video/mp4">
+                    </video>
+                </div>
+                </div>
+
+                <div class="column">
+                    <div class="content">
+                        <div class="content has-text-centered">
+                            <h2 class="title is-7">Whole-body Teleoperation with HybrIK</h2>
+                        </div>
+                        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/bfm_videos/new.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="content">
+                        <div class="content has-text-centered">
+                            <h2 class="title is-7">Whole-body Teleoperation with HybrIK</h2>
+                        </div>
+                        <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                        <source src="./static/bfm_videos/mocap_2.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section" style="padding-top: 0rem;">
+   <div class="container is-max-desktop">
+     <div class="columns is-centered has-text-centered">
+       <div class="column is-four-fifths">
+         <h2 class="title is-3">BFM Implementation</h2>
+               <div class="columns is-centered has-text-centered">
+               <div class="column is-9" style="margin-left: 0; margin-right: 0; padding-left: 1rem; padding-right: 1rem;">
+                   <hr class="has-background-grey-light" style="height: 1px; margin: 1rem 0;">
+                   <p class="is-size-6 has-text-grey" style="text-align: justify;">
+                     A proxy agent is first trained in simulation via large-scale motion imitation as preparation of the large-scale behavioral datasets for BFM pretraining.
+                     <br><br>
+                     The BFM is then implemented as a Conditional Variational Autoencoder with a versatile control interface based on our mathematical formulation and leverage the paradigm of masked online distillation for pretraining.
+                 </p>
+                   <hr class="has-background-grey-light" style="height: 1px; margin: 1rem 0;">
+               </div>
+               
+               </div>
+             
+        
+       </div>
+      </div>
+      <div class="content has-text-centered">
+          <figure style="max-width: 800px; margin: 0 auto;">
+           <img src="./static/images/bfm_main.png" alt="BFM Implementation" style="width: 100%; height: auto;">
+           <figcaption class="is-size-7 has-text-grey" style="margin-top: 0.5rem;">
+             Figure 1: Overview of BFM Implementation
+           </figcaption>
+         </figure>
+       </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0rem;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" style="margin-bottom: 1.5rem;">BFM Applications</h2>
+        </div>
+        </div>
+   </div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h4 class="title is-5 has-text-centered">Behavoior Composition</h4>
+      </div>
+    </div>
+    <div class="columns is-centered has-text-centered">
+        <div class="column is-5" style="margin-left: 0; margin-right: 0; padding-left: 1rem; padding-right: 1rem;">
+            <hr class="has-background-grey-light" style="height: 1px; margin: 1rem 0;">
+            <p class="is-size-6 has-text-grey" style="text-align: justify;">
+                BFM allows behavior composition through linear interpolation of latent variables from two distinct control modes, generating novel behaviors integrating the features of both control modes.
+          </p>
+            <hr class="has-background-grey-light" style="height: 1px; margin: 1rem 0;">
+        </div> 
+    </div>
+    <div class="container is-max-desktop">
+        <div class="columns is-centered">
+
+            <div class="column">
+            <div class="content">
+                <div class="content has-text-centered">
+                    <h2 class="title is-7">Root Mode Only</h2>
+                </div>
+                <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/bfm_videos/root_only.mp4"
+                        type="video/mp4">
+                </video>
+            </div>
+            </div>
+    
+            <div class="column">
+                <div class="content">
+                    <div class="content has-text-centered">
+                        <h2 class="title is-7" style="color: #dc3545;">After Composition</h2>
+                    </div>
+                    <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/bfm_videos/composition.mp4"
+                            type="video/mp4">
+                    </video>
+                </div>
+            </div>
+    
+            <div class="column">
+                <div class="content">
+                    <div class="content has-text-centered">
+                        <h2 class="title is-7">Keypoint Mode Only </h2>
+                    </div>
+                    <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/bfm_videos/keypoint_only.mp4"
+                            type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+     <div class="columns is-centered" style="margin-top: 1.5rem;">
+         <div class="column is-four-fifths">
+           <h4 class="title is-5 has-text-centered">Behavoior Modulation</h4>
+         </div>
+       </div>
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-5" style="margin-left: 0; margin-right: 0; padding-left: 1rem; padding-right: 1rem;">
+              <hr class="has-background-grey-light" style="height: 1px; margin: 1rem 0;">
+               <p class="is-size-6 has-text-grey" style="text-align: justify;">
+                     BFM allows behavior modulation through linear extrapolation in the latent space, thereby enabling behavior generation that better aligns with the desired control mode.
+             </p>
+             <div class="has-text-centered" style="margin: 1rem 0;">
+                 <p class="is-size-5" style="font-family: 'Times New Roman', serif;">
+                     $$z = (1+\lambda)\mu^{\rho}(s_t^{p,real},s_t^{g,real}) - \lambda\mu^{\rho}(s_{t}^{p,real},\emptyset), \lambda>0$$
+                 </p>
+             </div>
+              <hr class="has-background-grey-light" style="height: 1px; margin: 1rem 0;">
+          </div> 
+      </div>
+      <div class="container is-max-desktop">
+          <div class="columns is-centered">
+  
+              <div class="column">
+              <div class="content">
+                  <div class="content has-text-centered">
+                      <h2 class="title is-7">Before Modulation</h2>
+                  </div>
+                  <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/bfm_videos/wo_modulation.mp4"
+                          type="video/mp4">
+                  </video>
+              </div>
+              </div>
+      
+              <div class="column">
+                  <div class="content">
+                      <div class="content has-text-centered">
+                          <h2 class="title is-7" style="color: #dc3545;">After Modulation</h2>
+                      </div>
+                      <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                      <source src="./static/bfm_videos/w_modulation.mp4"
+                              type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+              
+          </div>
+      </div>
+
+      <div class="columns is-centered" style="margin-top: 1.5rem;">
+        <div class="column is-four-fifths">
+          <h4 class="title is-5 has-text-centered">Efficient Behavior Acquisition</h4>
+        </div>
+      </div>
+     <div class="columns is-centered has-text-centered">
+         <div class="column is-5" style="margin-left: 0; margin-right: 0; padding-left: 1rem; padding-right: 1rem;">
+             <hr class="has-background-grey-light" style="height: 1px; margin: 1rem 0;">
+              <p class="is-size-6 has-text-grey" style="text-align: justify;">
+                We adopt residual learning on our pretrained BFM to leverage a broad spectrum of inherent knowledge encoded in our BFM for efficient acquisition of novel behaviors.
+            </p>
+             <hr class="has-background-grey-light" style="height: 1px; margin: 1rem 0;">
+         </div> 
+     </div>
+     <div class="container is-max-desktop">
+         <div class="content has-text-centered">
+             <figure style="max-width: 600px; margin: 0 auto;">
+              <img src="./static/images/residual_learning.png" alt="Residual Learning" style="width: 100%; height: auto;">
+              <figcaption class="is-size-7 has-text-grey" style="margin-top: 0.5rem;">
+                Figure 2: Overview of Residual Learning on BFM
+              </figcaption>
+            </figure>
+          </div>
+         <div class="columns is-centered">
+ 
+             <div class="column">
+             <div class="content">
+                 <div class="content has-text-centered">
+                     <h2 class="title is-7">BFM ONLY</h2>
+                 </div>
+                 <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                 <source src="./static/bfm_videos/orig_side.mp4"
+                         type="video/mp4">
+                 </video>
+             </div>
+             </div>
+     
+             <div class="column">
+                 <div class="content">
+                     <div class="content has-text-centered">
+                         <h2 class="title is-7">RL from Scratch</h2>
+                     </div>
+                     <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                     <source src="./static/bfm_videos/rl_scratch.mp4"
+                             type="video/mp4">
+                     </video>
+                 </div>
+             </div>
+             
+         </div>
+
+         <div class="columns is-centered">
+ 
+            <div class="column">
+            <div class="content">
+                <div class="content has-text-centered">
+                    <h2 class="title is-7">BFM + Residual Learning</h2>
+                </div>
+                <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/bfm_videos/residual_side.mp4"
+                        type="video/mp4">
+                </video>
+            </div>
+            </div>
+    
+            <div class="column">
+                <div class="content">
+                    <div class="content has-text-centered">
+                        <h2 class="title is-7" style="color: #dc3545;">Real Deployment</h2>
+                    </div>
+                    <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                    <source src="./static/bfm_videos/real_side.mp4"
+                            type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            
+        </div>
+     </div>
+
+    <!-- </div> -->
+ </section>
+
+
+<!-- <section class="section"> -->
+  <!-- <div class="container is-max-desktop"> -->
+
+    <!-- <div class="columns is-centered"> -->
+
+      <!-- Visual Effects. -->
+      <!-- <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Visual Effects</h2>
+          <p>
+            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+            would be impossible without nerfies since it would require going through a wall.
+          </p>
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/dollyzoom-stacked.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div> -->
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <!-- <div class="column">
+        <h2 class="title is-3">Matting</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              As a byproduct of our method, we can also solve the matting problem by ignoring
+              samples that fall outside of a bounding box during rendering.
+            </p>
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/matting.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div>
+    </div> -->
+    <!--/ Matting. -->
+
+  <!-- </div> -->
+<!-- </section> -->
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section> -->
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!-- <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a> -->
+      <a class="icon-link" href="https://github.com/zengweishuai" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+             <p>
+                 Page template borrowed from <a href="https://nerfies.github.io/">Nerfies</a>.
+             </p>
+          </div>
+        </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
